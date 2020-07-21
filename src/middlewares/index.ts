@@ -1,0 +1,1 @@
+export { default as requestChecker } from './requestChecker.repository'

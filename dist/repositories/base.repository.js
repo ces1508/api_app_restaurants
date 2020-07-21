@@ -11,12 +11,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 class BaseRepository {
     constructor(model) {
-        this.modelName = model;
+        this.model = model;
     }
     create(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const newRegistry = yield this.modelName.insert(data);
+                const newRegistry = yield this.model.create(data);
                 return {
                     data: newRegistry,
                     new_records_id: ['1']
@@ -38,13 +38,8 @@ class BaseRepository {
     }
     find(query) {
         return __awaiter(this, void 0, void 0, function* () {
-            return [
-                {
-                    data: {
-                        id: '1'
-                    }
-                }
-            ];
+            const data = yield this.model.find({});
+            return data;
         });
     }
     findOne(id) {
@@ -56,10 +51,7 @@ class BaseRepository {
     }
     remove(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return {
-                deleted: true,
-                rows_deleted: [id]
-            };
+            throw new Error('method not implement yet');
         });
     }
 }

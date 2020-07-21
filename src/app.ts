@@ -2,7 +2,9 @@ import express from 'express'
 import helmet from 'helmet'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
-import { Request, Response } from 'express'
+
+// router
+import appRouter from './routers'
 
 import {
   DATABASE_NAME,
@@ -19,11 +21,6 @@ app.use(bodyParser.json())
 
 // connect to database
 
-console.log(DATABASE_NAME)
-console.log(DATABASE_USER)
-console.log(DATABASE_USER_PASSWORD)
-
-
 mongoose.connect(`mongodb://${DATABASE_HOST}`, {
   user: DATABASE_USER,
   pass: DATABASE_USER_PASSWORD,
@@ -38,9 +35,7 @@ mongoose.connect(`mongodb://${DATABASE_HOST}`, {
   console.log('error connecting to database', err.message)
 })
 
-app.use('/', (req: Request, res: Response) => {
-  res.send('hola typesript')
-})
+app.use(appRouter)
 
 
 export default app

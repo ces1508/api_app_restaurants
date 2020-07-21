@@ -1,4 +1,3 @@
-import { Collection } from 'mongoose'
 import {
   IRead,
   IWrite,
@@ -10,14 +9,14 @@ import {
 } from './intefaces'
 
 export default  abstract class BaseRepository implements IWrite, IRead  {
-  private readonly modelName: Collection
-  constructor (model: Collection) {
-    this.modelName = model
+  private readonly model: any
+  constructor (model: any) {
+    this.model = model
   }
 
   async create(data: object): Promise<IRepositoryCreateResponse | IRepositoryBaseError> {
     try {
-      const newRegistry = await this.modelName.insert(data)
+      const newRegistry = await this.model.create(data)
       return {
         data: newRegistry,
         new_records_id: ['1']
@@ -36,13 +35,8 @@ export default  abstract class BaseRepository implements IWrite, IRead  {
   }
 
   async find (query: Object): Promise<[iBaseRepositoryResponse] | IRepositoryBaseError> {
-    return [
-      {
-        data: {
-          id: '1'
-        }
-      }
-    ]
+    const data = await this.model.find({})
+    return data
   }
 
   async findOne (id: String): Promise<iBaseRepositoryResponse |  IRepositoryBaseError> {
@@ -52,9 +46,6 @@ export default  abstract class BaseRepository implements IWrite, IRead  {
   }
 
   async remove (id: String): Promise<IRepositoryDeletedResponse | IRepositoryBaseError> {
-    return {
-      deleted: true,
-      rows_deleted: [id]
-    }
+    throw new Error('method not implement yet')
   }
 }
