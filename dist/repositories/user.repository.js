@@ -25,9 +25,9 @@ class UserRepository extends base_repository_1.default {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const validateIfUserExits = yield this.findByEmail(email);
-                if (validateIfUserExits)
-                    throw new Error('user already exits');
-                return _super.create.call(this, { email, password });
+                if (validateIfUserExits !== null)
+                    return { error: true, message: 'user already exits', code: 8, status: 422 };
+                return yield _super.create.call(this, { email, password });
             }
             catch (e) {
                 throw new Error(e);
@@ -45,8 +45,6 @@ class UserRepository extends base_repository_1.default {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const user = yield models_1.User.findOne({ email });
-                if (!user)
-                    return null;
                 return user;
             }
             catch (e) {

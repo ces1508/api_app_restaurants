@@ -2,6 +2,8 @@ import express from 'express'
 import helmet from 'helmet'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
+import 'express-async-errors'
+import { apiErrorHandler } from './middlewares'
 
 // router
 import appRouter from './routers'
@@ -28,14 +30,14 @@ mongoose.connect(`mongodb://${DATABASE_HOST}`, {
   useFindAndModify: true,
   useNewUrlParser: true
 })
-.then(() => {
-  console.log('database connected')
-})
-.catch(err => {
-  console.log('error connecting to database', err.message)
-})
+  .then(() => {
+    console.log('database connected')
+  })
+  .catch(err => {
+    console.log('error connecting to database', err.message)
+  })
 
-app.use(appRouter)
-
+app.use('/api', appRouter)
+app.use(apiErrorHandler)
 
 export default app

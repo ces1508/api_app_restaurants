@@ -2,10 +2,10 @@ import mongoose, { Document, Schema } from 'mongoose'
 import { UserAuthToken, UserProvider } from '../types'
 
 export interface UserDocument extends Document {
-  email: string,
+  email: string
   password: string
-  passwordResetToken: string,
-  passwordResetTokenExpired: Date,
+  passwordResetToken: string
+  passwordResetTokenExpired: Date
   providers: [UserProvider]
   tokens: UserAuthToken
 }

@@ -7,6 +7,8 @@ const express_1 = __importDefault(require("express"));
 const helmet_1 = __importDefault(require("helmet"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const mongoose_1 = __importDefault(require("mongoose"));
+require("express-async-errors");
+const middlewares_1 = require("./middlewares");
 // router
 const routers_1 = __importDefault(require("./routers"));
 const index_secrets_1 = require("./secrets/index.secrets");
@@ -28,6 +30,7 @@ mongoose_1.default.connect(`mongodb://${index_secrets_1.DATABASE_HOST}`, {
     .catch(err => {
     console.log('error connecting to database', err.message);
 });
-app.use(routers_1.default);
+app.use('/api', routers_1.default);
+app.use(middlewares_1.apiErrorHandler);
 exports.default = app;
 //# sourceMappingURL=app.js.map

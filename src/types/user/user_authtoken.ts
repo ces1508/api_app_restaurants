@@ -1,4 +1,4 @@
 export default interface AuthToken {
-  accessToken: string,
+  accessToken: string
   kind: string
 }

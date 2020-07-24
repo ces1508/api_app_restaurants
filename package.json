@@ -10,12 +10,13 @@
     "dev": "nodemon --watch ./dist --inspect=0.0.0.0:9222 --nolazy ./dist/server.js",
     "start": "node ./dist/index.js",
     "docker-debug": "docker-compose up",
+    "lint": "ts-standard --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "standard": {
-    "ingore": [
+  "ts-standard": {
+    "ignore": [
       "*.test",
-      "dist"
+      "dist/"
     ]
   },
   "keywords": [],
@@ -26,15 +27,25 @@
     "@types/express": "^4.17.7",
     "@types/helmet": "0.0.47",
     "@types/mongoose": "^5.7.32",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "eslint": "^7.5.0",
+    "eslint-config-standard-with-typescript": "^18.0.2",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "nodemon": "^2.0.4",
     "standard": "^14.3.4",
     "ts-node": "^8.10.2",
+    "ts-standard": "^8.0.1",
     "typescript": "^3.9.7"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "eslint-config-standard": "^14.1.1",
     "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
     "express-validator": "^6.6.0",
     "helmet": "^3.23.3",
     "jsonwebtoken": "^8.5.1",

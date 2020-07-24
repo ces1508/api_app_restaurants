@@ -5,6 +5,6 @@
  */
 
 export default interface Provider {
-  name: string,
+  name: string
   oauthId: string
 }

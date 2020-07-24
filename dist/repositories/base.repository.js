@@ -23,7 +23,10 @@ class BaseRepository {
                 };
             }
             catch (e) {
-                throw new Error(e);
+                const error = new Error();
+                error.message = e.message;
+                e.status = 500;
+                throw error;
             }
         });
     }
