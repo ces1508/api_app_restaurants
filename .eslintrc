@@ -7,10 +7,12 @@
     "sourceType": "module"
   },
   "rules": {
+    "no-unused-expressions": "off",
     "semi": ["off", "always"],
     "quotes": ["error", "single"],
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-explicit-any": 1,
+    "@typescript-eslint/no-unused-expressions": ["error"],
     "@typescript-eslint/no-inferrable-types": [
       "warn", {
         "ignoreParameters": true

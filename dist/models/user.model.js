@@ -25,8 +25,8 @@ const UserSchema = new mongoose_1.Schema({
     password: String,
     passwordResetToken: String,
     passwordResetTokenExpired: Date,
-    providers: [],
-    tokens: []
+    providers: []
+    // tokens: []
 });
 exports.default = mongoose_1.default.model('User', UserSchema);
 //# sourceMappingURL=user.model.js.map

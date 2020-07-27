@@ -1,13 +1,13 @@
 import mongoose, { Document, Schema } from 'mongoose'
-import { UserAuthToken, UserProvider } from '../types'
+import { UserProvider } from '../types'
 
-export interface UserDocument extends Document {
+export interface IUser extends Document {
   email: string
   password: string
   passwordResetToken: string
   passwordResetTokenExpired: Date
   providers: [UserProvider]
-  tokens: UserAuthToken
+  // tokens: UserAuthToken
 }
 
 const UserSchema = new Schema({
@@ -15,8 +15,8 @@ const UserSchema = new Schema({
   password: String,
   passwordResetToken: String,
   passwordResetTokenExpired: Date,
-  providers: [],
-  tokens: []
+  providers: []
+  // tokens: []
 })
 
 export default mongoose.model('User', UserSchema)
